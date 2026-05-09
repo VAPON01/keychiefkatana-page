@@ -1,237 +1,330 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KeyChief Katana - KATANA Series</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    <title>VP100 - Professional BMW IMMO Key Programmer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#121618',
+                        darkCard: '#1a1e20',
+                        accentGreen: '#7ed321',
+                        textLight: '#e0e0e0',
+                        textGray: '#999'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
         }
-        body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* 头部横幅 */
-        .hero {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        /* 产品展示区 */
-        .product-showcase {
-            padding: 50px 0;
-            background: white;
-        }
-        .product-image {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin: 0 auto 30px;
-            display: block;
-        }
-
-        /* 核心卖点 */
-        .features {
-            padding: 50px 0;
-        }
-        .features h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .feature-item {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-        }
-        .feature-item h3 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        /* 参数表 */
-        .specs {
-            padding: 50px 0;
-            background: white;
-        }
-        .specs h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
-        .spec-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .spec-table th, .spec-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        .spec-table th {
-            background: #f8f9fa;
-            font-weight: bold;
-        }
-
-        /* 视频/下载区 */
-        .cta-section {
-            padding: 50px 0;
-            text-align: center;
-        }
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 10px;
-            transition: background 0.3s;
-        }
-        .btn-primary {
-            background: #2c3e50;
-            color: white;
-        }
-        .btn-primary:hover {
-            background: #34495e;
-        }
-        .btn-secondary {
-            background: #3498db;
-            color: white;
-        }
-        .btn-secondary:hover {
-            background: #2980b9;
-        }
-
-        /* 页脚 */
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 50px;
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .section-padding {
+                padding: 6rem 1rem;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:border-accentGreen/50 hover:shadow-lg hover:shadow-accentGreen/10;
+            }
+            .btn-primary {
+                @apply bg-accentGreen text-darkBg px-5 py-2 rounded text-sm font-semibold transition-all duration-300 hover:bg-accentGreen/90 hover:shadow-lg hover:shadow-accentGreen/20;
+            }
+            .btn-secondary {
+                @apply text-textLight text-sm transition-all duration-300 hover:text-accentGreen flex items-center gap-1 cursor-pointer;
+            }
+            .section-title {
+                @apply text-2xl font-bold text-white text-center mb-2;
+            }
+            .section-subtitle {
+                @apply text-textGray text-sm text-center max-w-2xl mx-auto mb-10;
+            }
+            /* PDF弹窗样式 */
+            .pdf-modal {
+                @apply fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4;
+            }
+            .pdf-modal-box {
+                @apply w-full max-w-4xl bg-darkCard rounded-lg overflow-hidden relative;
+            }
+            .close-btn {
+                @apply absolute top-3 right-3 text-white text-xl cursor-pointer hover:text-accentGreen z-10;
+            }
         }
     </style>
 </head>
-<body>
-    <!-- 头部横幅 -->
-    <header class="hero">
-        <div class="container">
-            <h1>KeyChiefKatana</h1>
-            <p>A high-performance solution designed specifically for car door lock opening</p>
-        </div>
-    </header>
-
-    <!-- 产品展示区 -->
-    <section class="product-showcase">
-        <div class="container">
-            <!-- 把 src 换成你的产品图片地址 -->
-            <img src="https://via.placeholder.com/600x400?text=KeyChiefKatana+产品图" alt="KeyChiefKatana" class="product-image">
-            <h2>产品简介</h2>
-            <p style="margin-top:20px; font-size:1.1rem;">
-                The KATANA series represents precision engineering and reliability. Each decoder isdesigned for specific vehicle platforms, delivering professional-grade performance forlocksmiths and automotive technicians.
-            </p>
-        </div>
-    </section>
-
-    <!-- 核心卖点 -->
-    <section class="features">
-        <div class="container">
-            <h2>核心卖点</h2>
-            <div class="feature-list">
-                <div class="feature-item">
-                    <h3>✅ 精准适配</h3>
-                    <p>1:1开模，完美贴合原车钥匙，不影响信号与按键使用。</p>
+<body class="bg-darkBg text-textLight font-sans">
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center py-16">
+        <div class="container mx-auto grid md:grid-cols-2 gap-10 items-center px-4">
+            <div class="space-y-6">
+                <span class="text-accentGreen text-xs font-semibold uppercase tracking-wider">BMW Specialist</span>
+                <h1 class="text-4xl md:text-5xl font-bold text-white">VP100</h1>
+                <h2 class="text-lg text-accentGreen font-medium">Professional BMW IMMO Key Programmer</h2>
+                <p class="text-textGray text-sm leading-relaxed">
+                    The VP100 is a dedicated BMW IMMO system key programming tool engineered for professional automotive technicians. Featuring fully offline operation, it delivers reliable BDC2 key programming and module reset capabilities without any network dependency.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <button class="btn-primary">Get a Quote <i class="fa fa-arrow-right ml-1"></i></button>
+                    <!-- 点击唤起PDF弹窗 -->
+                    <span class="btn-secondary" id="openPdfBtn"><i class="fa fa-download"></i> Download Manual</span>
                 </div>
-                <div class="feature-item">
-                    <h3>✅ 坚固耐用</h3>
-                    <p>高强度材质，抗冲击、防刮耐磨，有效保护钥匙不受损。</p>
-                </div>
-                <div class="feature-item">
-                    <h3>✅ 超薄设计</h3>
-                    <p>轻薄不臃肿，不影响钥匙放入口袋或钱包，携带方便。</p>
-                </div>
-                <div class="feature-item">
-                    <h3>✅ 安装简单</h3>
-                    <p>无需工具，徒手即可轻松安装拆卸，日常清洁也很方便。</p>
+            </div>
+            <div class="flex justify-center">
+                <div class="relative w-3/4 max-w-md">
+                    <!-- 直接替换 src 即可换产品图片 -->
+                    <img src="product.jpg" alt="VP100 Device" class="w-full rounded-lg border border-white/10">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 参数规格 -->
-    <section class="specs">
-        <div class="container">
-            <h2>产品规格</h2>
-            <table class="spec-table">
-                <tr>
-                    <th>项目</th>
-                    <th>详情</th>
-                </tr>
-                <tr>
-                    <td>适用车型</td>
-                    <td>通用款/支持多种车型钥匙（可备注定制）</td>
-                </tr>
-                <tr>
-                    <td>材质</td>
-                    <td>优质TPU/ABS材质（可选）</td>
-                </tr>
-                <tr>
-                    <td>颜色选项</td>
-                    <td>黑色/透明/磨砂/定制色</td>
-                </tr>
-                <tr>
-                    <td>包装内容</td>
-                    <td>钥匙套 × 1</td>
-                </tr>
-            </table>
+    <!-- Key Features Section -->
+    <section class="py-16 bg-darkCard/30">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title">Key Features</h2>
+            <p class="section-subtitle">Designed specifically for BMW IMMO systems, the VP100 brings precision and reliability to every job.</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Feature Card 1 -->
+                <div class="bg-darkCard border border-white/10 p-6 rounded card-hover">
+                    <div class="text-accentGreen mb-4">
+                        <i class="fa fa-wifi"></i>
+                    </div>
+                    <h3 class="text-white font-semibold mb-2">Fully Offline Operation</h3>
+                    <p class="text-textGray text-xs leading-relaxed">No internet connection required. Work in any environment, anytime, without network dependency or subscription fees.</p>
+                </div>
+                
+                <!-- Feature Card 2 -->
+                <div class="bg-darkCard border border-white/10 p-6 rounded card-hover">
+                    <div class="text-accentGreen mb-4">
+                        <i class="fa fa-key"></i>
+                    </div>
+                    <h3 class="text-white font-semibold mb-2">BDC2 Key Programming</h3>
+                    <p class="text-textGray text-xs leading-relaxed">Supports BMW BDC2 IMMO system key programming with high accuracy and compatibility for 2006-2018 BMW models.</p>
+                </div>
+                
+                <!-- Feature Card 3 -->
+                <div class="bg-darkCard border border-white/10 p-6 rounded card-hover">
+                    <div class="text-accentGreen mb-4">
+                        <i class="fa fa-shield"></i>
+                    </div>
+                    <h3 class="text-white font-semibold mb-2">Module Reset Support</h3>
+                    <p class="text-textGray text-xs leading-relaxed">Comprehensive module reset capabilities allow technicians to restore IMMO modules to factory state efficiently.</p>
+                </div>
+                
+                <!-- Feature Card 4 -->
+                <div class="bg-darkCard border border-white/10 p-6 rounded card-hover">
+                    <div class="text-accentGreen mb-4">
+                        <i class="fa fa-magic"></i>
+                    </div>
+                    <h3 class="text-white font-semibold mb-2">Intuitive Interface</h3>
+                    <p class="text-textGray text-xs leading-relaxed">Step-by-step guided workflow with a clear on-screen interface minimizes errors and reduces training time.</p>
+                </div>
+                
+                <!-- Feature Card 5 -->
+                <div class="bg-darkCard border border-white/10 p-6 rounded card-hover">
+                    <div class="text-accentGreen mb-4">
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <h3 class="text-white font-semibold mb-2">Stable & Reliable</h3>
+                    <p class="text-textGray text-xs leading-relaxed">Engineered for professional use with robust hardware and firmware, ensuring consistent performance in demanding conditions.</p>
+                </div>
+                
+                <!-- Feature Card 6 -->
+                <div class="bg-darkCard border border-white/10 p-6 rounded card-hover">
+                    <div class="text-accentGreen mb-4">
+                        <i class="fa fa-download"></i>
+                    </div>
+                    <h3 class="text-white font-semibold mb-2">Firmware Upgradeable</h3>
+                    <p class="text-textGray text-xs leading-relaxed">Supports firmware updates via USB to keep compatible with new BMW models and IMMO system revisions.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- 下载/视频区 -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>获取更多信息</h2>
-            <p style="margin:20px 0;">Vedio and download</p>
-            <!-- 把 href 换成你的网盘直链 -->
-            <a href="替换成你的视频链接" class="btn btn-primary" target="_blank">Vedio</a>
-            <a href="替换成你的说明书链接" class="btn btn-secondary" download>download</a>
+    <!-- Vehicle Compatibility & Technical Specs -->
+    <section class="py-16">
+        <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-10">
+            <!-- Vehicle Compatibility -->
+            <div>
+                <h2 class="text-2xl font-bold text-white mb-4">Vehicle Compatibility</h2>
+                <p class="text-textGray text-sm mb-6 leading-relaxed">
+                    The VP100 is purpose-built for BMW and select Audi IMMO systems, covering a wide range of models from 2006 to 2018. Its specialized focus ensures deep integration and reliable performance where generic tools fall short.
+                </p>
+                <ul class="space-y-2 text-sm text-textGray">
+                    <li class="flex items-center gap-2">
+                        <span class="text-accentGreen"><i class="fa fa-circle-o text-xs"></i></span>
+                        BMW 1 Series (E81/E82/E87/E88) 2006-2013
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-accentGreen"><i class="fa fa-circle-o text-xs"></i></span>
+                        BMW 3 Series (E90/E91/E92/E93) 2006-2013
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-accentGreen"><i class="fa fa-circle-o text-xs"></i></span>
+                        BMW 5 Series (E60/E61) 2006-2010
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-accentGreen"><i class="fa fa-circle-o text-xs"></i></span>
+                        BMW 5 Series (F10/F11) 2010-2017
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-accentGreen"><i class="fa fa-circle-o text-xs"></i></span>
+                        BMW X Series (E70/E71/F15/F16)
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-accentGreen"><i class="fa fa-circle-o text-xs"></i></span>
+                        BMW 7 Series (F01/F02) 2008-2015
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="text-accentGreen"><i class="fa fa-circle-o text-xs"></i></span>
+                        Select Audi models (IMMO compatible)
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Technical Specifications -->
+            <div class="bg-darkCard border border-white/10 p-6 rounded-lg">
+                <h3 class="text-white font-semibold mb-4">Technical Specifications</h3>
+                <div class="space-y-3 text-sm">
+                    <div class="flex justify-between border-b border-white/10 pb-2">
+                        <span class="text-textGray">Target Brand</span>
+                        <span class="text-white">BMW / Audi</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-2">
+                        <span class="text-textGray">IMMO System</span>
+                        <span class="text-white">BDC2 & Compatible</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-2">
+                        <span class="text-textGray">Year Coverage</span>
+                        <span class="text-white">2006 – 2018</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-2">
+                        <span class="text-textGray">Operation Mode</span>
+                        <span class="text-white">Fully Offline</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-2">
+                        <span class="text-textGray">Interface</span>
+                        <span class="text-white">USB / On-device Screen</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-2">
+                        <span class="text-textGray">Update Method</span>
+                        <span class="text-white">USB Firmware Update</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-2">
+                        <span class="text-textGray">Language</span>
+                        <span class="text-white">English / Multi-language</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-textGray">Package</span>
+                        <span class="text-white">Device + Cables + Case</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- 页脚 -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 KeyChiefKatana | All Rights Reserved</p>
+    <!-- Software Update Section -->
+    <section class="py-16 bg-darkCard/30">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="section-title">Latest Software Update</h2>
+            <p class="section-subtitle">Keep your VP100 up to date with the latest firmware to ensure maximum compatibility and performance.</p>
+            
+            <div class="bg-darkCard border border-white/10 p-6 rounded-lg max-w-2xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="text-left">
+                    <p class="text-textGray text-xs mb-1">Current Version</p>
+                    <p class="text-accentGreen font-bold">V2.10</p>
+                    <p class="text-textGray text-xs mt-2">Includes new BDC2 model support and stability improvements.</p>
+                </div>
+                <button class="btn-primary">
+                    <i class="fa fa-download mr-1"></i> Download V2.10 Update
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="section-title">Ready to Order the VP100?</h2>
+            <p class="section-subtitle">Contact our sales team for pricing, availability, and technical support.</p>
+            <button class="btn-primary mt-4">Contact Sales <i class="fa fa-arrow-right ml-1"></i></button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-darkCard py-10 border-t border-white/10">
+        <div class="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+                <p class="text-accentGreen font-bold text-sm mb-2">VAPON</p>
+                <p class="text-textGray text-xs">Professional automotive diagnostic solutions.</p>
+            </div>
+            <div>
+                <p class="text-white font-semibold text-sm mb-3">Products</p>
+                <ul class="space-y-2 text-textGray text-xs">
+                    <li>VP100</li>
+                    <li>VP996</li>
+                    <li>KATANA Series</li>
+                </ul>
+            </div>
+            <div>
+                <p class="text-white font-semibold text-sm mb-3">Support</p>
+                <ul class="space-y-2 text-textGray text-xs">
+                    <li>Documentation</li>
+                    <li>FAQ</li>
+                </ul>
+            </div>
+            <div>
+                <p class="text-white font-semibold text-sm mb-3">Contact</p>
+                <p class="text-textGray text-xs">Email: info@vapon.com</p>
+            </div>
         </div>
     </footer>
+
+    <!-- PDF 弹窗预览 -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-modal-box">
+            <span class="close-btn" id="closePdfBtn"><i class="fa fa-times"></i></span>
+            <iframe id="pdfIframe" src="" class="w-full" style="height: 80vh;" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // ========== 只需要改这两个地址 ==========
+        const PRODUCT_IMG_URL = "product.jpg";   // 产品图片地址
+        const PDF_FILE_URL    = "manual.pdf";    // PDF手册地址
+
+        // 赋值PDF链接
+        document.getElementById('pdfIframe').src = PDF_FILE_URL;
+
+        const openPdfBtn = document.getElementById('openPdfBtn');
+        const pdfModal = document.getElementById('pdfModal');
+        const closePdfBtn = document.getElementById('closePdfBtn');
+
+        // 打开弹窗
+        openPdfBtn.addEventListener('click', () => {
+            pdfModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+
+        // 关闭弹窗
+        closePdfBtn.addEventListener('click', () => {
+            pdfModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // 点击遮罩关闭
+        pdfModal.addEventListener('click', (e) => {
+            if(e.target === pdfModal){
+                pdfModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
 </body>
 </html>
