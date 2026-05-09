@@ -236,49 +236,47 @@
             object-fit: contain;
         }
 
-        /* Live Video Stream Section */
-        .live-stream {
-            margin: 40px 0;
-            padding: 20px;
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+        /* 16 Video Grid Section */
+        .video-grid-section {
+            margin: 60px 0;
         }
-
-        .live-stream h2 {
-            font-size: 18px;
-            margin-bottom: 16px;
+        .video-grid-section h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-
-        .live-stream h2::before {
+        .video-grid-section h2::before {
             content: "●";
             color: #ff4444;
             font-size: 12px;
         }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            background-color: #000;
-            border-radius: 4px;
-            overflow: hidden;
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
         }
-
-        .video-container iframe {
+        .video-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+        .video-item iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
 
         /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .video-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
-            .product-detail {
-                grid-template-columns: 1fr;
-            }
+            .product-detail { grid-template-columns: 1fr; }
+            .video-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -341,7 +339,6 @@
                 <button class="view-details-btn">View Full Details →</button>
             </div>
             <div class="product-image">
-                <!-- 你可以修改这里的src替换产品主图 -->
                 <img id="main-product-image" src="https://i.imgur.com/9Z7X7QH.png" alt="HU66 Decoder">
             </div>
         </div>
@@ -364,7 +361,6 @@
         <div class="product-gallery">
             <h2>Product Gallery</h2>
             <div class="gallery-grid" id="gallery-grid">
-                <!-- 你可以修改这些src替换图片 -->
                 <div class="gallery-item">
                     <img src="https://i.imgur.com/8X7Y9Wb.png" alt="HU66 Decoder View 1">
                 </div>
@@ -386,23 +382,31 @@
             </div>
         </div>
 
-        <!-- Live Video Stream Module -->
-        <div class="live-stream">
-            <h2>Live Demo Stream</h2>
-            <div class="video-container">
-                <!-- 替换src为你的视频流URL，支持YouTube、Vimeo或其他嵌入流 -->
-                <iframe 
-                    src="https://www.youtube.com/watch?v=xXtx-LimjeA&t=5s" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+        <!-- 16 个视频展示模块 -->
+        <div class="video-grid-section">
+            <h2>Video Demonstrations (16)</h2>
+            <div class="video-grid">
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
+                <div class="video-item"><iframe src="https://www.youtube.com/embed/xXtx-LimjeA" allowfullscreen></iframe></div>
             </div>
         </div>
     </div>
 
     <script>
-        // 产品数据配置 - 可以在这里修改每个型号的信息
         const productData = {
             HU66: {
                 title: "HU66",
@@ -526,7 +530,6 @@
             }
         };
 
-        // 模型切换逻辑
         const modelCards = document.querySelectorAll('.model-card');
         const modelTitle = document.getElementById('model-title');
         const modelDescription = document.getElementById('model-description');
@@ -538,22 +541,18 @@
 
         modelCards.forEach(card => {
             card.addEventListener('click', () => {
-                // 移除所有active状态
                 modelCards.forEach(c => c.classList.remove('active'));
-                // 添加当前active状态
                 card.classList.add('active');
                 
                 const modelKey = card.dataset.model;
                 const data = productData[modelKey];
                 
-                // 更新产品信息
                 modelTitle.textContent = data.title;
                 modelDescription.textContent = data.description;
                 compatibleVehicles.textContent = data.compatibleVehicles;
                 yearRange.textContent = data.yearRange;
                 mainProductImage.src = data.mainImage;
                 
-                // 更新特性列表
                 featuresGrid.innerHTML = '';
                 data.features.forEach(feature => {
                     const featureItem = document.createElement('div');
@@ -562,7 +561,6 @@
                     featuresGrid.appendChild(featureItem);
                 });
                 
-                // 更新图片画廊
                 galleryGrid.innerHTML = '';
                 data.galleryImages.forEach((imgSrc, index) => {
                     const galleryItem = document.createElement('div');
