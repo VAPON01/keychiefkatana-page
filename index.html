@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KATANA Series Key Decoders</title>
+    <title>KATANA Series Key Decoders | KEYCHIEF</title>
     <style>
         :root {
             --bg-dark: #121212;
             --bg-card: #1e1e1e;
             --text-primary: #ffffff;
             --text-secondary: #aaaaaa;
-            --accent-green: #4CAF50;
+            --accent-green: #2ecc71;
+            --accent-hover: #27ae60;
             --border-color: #333333;
+            --coming-soon: #f39c12;
         }
 
         * {
@@ -25,6 +27,7 @@
             background-color: var(--bg-dark);
             color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -33,7 +36,7 @@
             padding: 20px;
         }
 
-        /* Header Section */
+        /* Header */
         .header {
             text-align: center;
             margin-bottom: 40px;
@@ -41,11 +44,10 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        /* KEYCHIEF LOGO 绿色 */
         .logo {
             font-size: 42px;
             font-weight: bold;
-            color: #2ecc71;
+            color: var(--accent-green);
             margin-bottom: 10px;
             letter-spacing: 1px;
         }
@@ -93,15 +95,17 @@
             padding: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
+            user-select: none;
         }
 
         .model-card.active {
             border-color: var(--accent-green);
-            background-color: rgba(76, 175, 80, 0.1);
+            background-color: rgba(46, 204, 113, 0.1);
         }
 
         .model-card:hover {
             border-color: var(--accent-green);
+            transform: translateY(-2px);
         }
 
         .model-card h3 {
@@ -117,14 +121,15 @@
 
         .coming-soon {
             font-size: 10px;
-            color: #ff9800;
+            color: var(--coming-soon);
             margin-top: 8px;
             display: flex;
             align-items: center;
             gap: 4px;
+            font-weight: 500;
         }
 
-        /* Product Detail Section */
+        /* Product Detail */
         .product-detail {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -156,15 +161,17 @@
             background-color: var(--accent-green);
             color: white;
             border: none;
-            padding: 10px 24px;
+            padding: 12px 28px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: 500;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            font-size: 14px;
         }
 
         .view-details-btn:hover {
-            background-color: #45a049;
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
         }
 
         .product-image {
@@ -175,15 +182,21 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            min-height: 300px;
         }
 
         .product-image img {
             max-width: 100%;
             max-height: 300px;
             object-fit: contain;
+            transition: transform 0.3s ease;
         }
 
-        /* Key Features Section */
+        .product-image img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Key Features */
         .key-features {
             margin: 40px 0;
         }
@@ -203,11 +216,16 @@
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 4px;
-            padding: 12px;
+            padding: 12px 16px;
             font-size: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .feature-item:hover {
+            border-color: var(--accent-green);
         }
 
         .feature-item::before {
@@ -216,6 +234,7 @@
             height: 8px;
             border-radius: 50%;
             background-color: var(--accent-green);
+            flex-shrink: 0;
         }
 
         /* Product Gallery */
@@ -237,15 +256,26 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            height: 180px;
+            transition: border-color 0.3s;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--accent-green);
         }
 
         .gallery-item img {
             max-width: 100%;
-            max-height: 150px;
+            max-height: 140px;
             object-fit: contain;
+            transition: transform 0.3s;
         }
 
-        /* 12 Video Grid Section */
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Video Grid */
         .video-grid-section {
             margin: 60px 0;
         }
@@ -272,6 +302,10 @@
             border-radius: 8px;
             overflow: hidden;
             aspect-ratio: 16/9;
+            transition: border-color 0.3s;
+        }
+        .video-item:hover {
+            border-color: var(--accent-green);
         }
         .video-item iframe {
             width: 100%;
@@ -279,7 +313,7 @@
             border: none;
         }
 
-        /* Responsive Adjustments */
+        /* Responsive */
         @media (max-width: 992px) {
             .video-grid { grid-template-columns: repeat(2, 1fr); }
             .logo { font-size: 36px; }
@@ -288,12 +322,12 @@
             .product-detail { grid-template-columns: 1fr; }
             .video-grid { grid-template-columns: 1fr; }
             .logo { font-size: 32px; }
+            .features-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header Section + KEYCHIEF Logo -->
         <div class="header">
             <div class="logo">KEYCHIEF</div>
             <h1>KATANA Series</h1>
@@ -301,7 +335,6 @@
             <p class="description">The KATANA series represents precision engineering and reliability. Each decoder is designed for specific vehicle platforms, delivering professional-grade performance for locksmiths and automotive technicians.</p>
         </div>
 
-        <!-- Model Selector -->
         <div class="model-selector">
             <h2>Select a Model</h2>
             <div class="model-grid">
@@ -337,7 +370,6 @@
             </div>
         </div>
 
-        <!-- Product Detail Section -->
         <div class="product-detail">
             <div class="product-info">
                 <h2 id="model-title">HU66</h2>
@@ -355,7 +387,6 @@
             </div>
         </div>
 
-        <!-- Key Features Section -->
         <div class="key-features">
             <h2>Key Features</h2>
             <div class="features-grid" id="features-grid">
@@ -369,7 +400,6 @@
             </div>
         </div>
 
-        <!-- Product Gallery -->
         <div class="product-gallery">
             <h2>Product Gallery</h2>
             <div class="gallery-grid" id="gallery-grid">
@@ -394,9 +424,8 @@
             </div>
         </div>
 
-        <!-- 12 个视频展示模块 -->
         <div class="video-grid-section">
-            <h2>Video Demonstrations (12)</h2>
+            <h2>Video Demonstrations</h2>
             <div class="video-grid">
                 <div class="video-item"><iframe src="https://www.youtube.com/embed/0c-7VLzMSe4" allowfullscreen></iframe></div>
                 <div class="video-item"><iframe src="https://www.youtube.com/embed/RmlM2OpR1dI" allowfullscreen></iframe></div>
@@ -421,7 +450,7 @@
                 description: "Professional decoder for Volkswagen and Audi vehicles. Compact and reliable key cutting and programming solution for classic European vehicles.",
                 compatibleVehicles: "Volkswagen (Old Models), Audi (Selected Models)",
                 yearRange: "2006 - 2015",
-                mainImage: "https://i.imgur.com/9Z7X7QH.png",
+                mainImage: "https://cdn.shopify.com/s/files/1/0601/4618/8474/products/hu66-1.jpg?v=1778308172",
                 features: [
                     "Precision key cutting mechanism",
                     "Compact portable design",
@@ -432,12 +461,12 @@
                     "Reliable performance in field operations"
                 ],
                 galleryImages: [
-                    "https://i.imgur.com/8X7Y9Wb.png",
-                    "https://i.imgur.com/5Z4A2Bd.png",
-                    "https://i.imgur.com/3C9E7Fg.png",
-                    "https://i.imgur.com/1D2H5Jk.png",
-                    "https://i.imgur.com/7K8L3Mm.png",
-                    "https://i.imgur.com/9N0P6Qr.png"
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/products/hu66-1.jpg?v=1778308172",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/products/1_31807d96-9b17-4934-a006-640d38631bc5.jpg?v=1632376178",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/2.jpg?v=1631633750",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/public.avif?v=1778308314",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/5.avif?v=1778308655",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/3.avif?v=1778308314"
                 ]
             },
             HU92: {
@@ -469,7 +498,7 @@
                 description: "Advanced decoder for Chevrolet and General Motors vehicles. Professional solution for key cutting and programming on selected GM models.",
                 compatibleVehicles: "Chevrolet, General Motors (Selected Models)",
                 yearRange: "2000 - 2010",
-                mainImage: "https://i.imgur.com/5Y6Z7Ab.png",
+                mainImage: "https://cdn.shopify.com/s/files/1/0601/4618/8474/products/hu66-1.jpg?v=1778308172",
                 features: [
                     "Precision key cutting mechanism",
                     "Compact portable design",
@@ -482,10 +511,10 @@
                 galleryImages: [
                     "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-1.avif?v=1778308974",
                     "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-2.avif?v=1778308974",
-                    "https://i.imgur.com/4K5L6Mk.png",
-                    "https://i.imgur.com/7N8O9Pp.png",
-                    "https://i.imgur.com/0Q1R2Rs.png",
-                    "https://i.imgur.com/3T4U5Vv.png"
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-4.avif?v=1778308974",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-5.avif?v=1778308974",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-3.avif?v=1778308974",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-6.avif?v=1778308974"
                 ]
             },
             HU100R: {
@@ -493,7 +522,7 @@
                 description: "Extended range decoder for General Motors and Chevrolet vehicles. Enhanced capabilities for extended GM model coverage.",
                 compatibleVehicles: "General Motors, Chevrolet (Extended Models)",
                 yearRange: "2005 - 2018",
-                mainImage: "https://i.imgur.com/6W7X8Yz.png",
+                mainImage: "https://cdn.shopify.com/s/files/1/0601/4618/8474/products/hu66-1.jpg?v=1778308172",
                 features: [
                     "Precision key cutting mechanism",
                     "Compact portable design",
@@ -504,12 +533,12 @@
                     "Field-proven reliability"
                 ],
                 galleryImages: [
-                    "https://i.imgur.com/9A0B1Cd.png",
-                    "https://i.imgur.com/2E3F4Gh.png",
-                    "https://i.imgur.com/5I6J7Jk.png",
-                    "https://i.imgur.com/8K9L0Lm.png",
-                    "https://i.imgur.com/1M2N3No.png",
-                    "https://i.imgur.com/4P5Q6Pp.png"
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-1.avif?v=1778308974",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-2.avif?v=1778308974",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-4.avif?v=1778308974",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-5.avif?v=1778308974",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-3.avif?v=1778308974",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-6.avif?v=1778308974"
                 ]
             },
             SIP22: {
@@ -517,7 +546,7 @@
                 description: "Specialized decoder for Fiat vehicles. Professional solution for key cutting and programming on selected Fiat models.",
                 compatibleVehicles: "Fiat (Selected Models)",
                 yearRange: "2003 - 2012",
-                mainImage: "https://i.imgur.com/7R8S9Tu.png",
+                mainImage: "https://cdn.shopify.com/s/files/1/0601/4618/8474/products/hu66-1.jpg?v=1778308172",
                 features: [
                     "Precision key cutting mechanism",
                     "Compact portable design",
@@ -528,12 +557,12 @@
                     "Field-proven reliability"
                 ],
                 galleryImages: [
-                    "https://i.imgur.com/0U1V2Vw.png",
-                    "https://i.imgur.com/3W4X5Xy.png",
-                    "https://i.imgur.com/6Y7Z8Zz.png",
-                    "https://i.imgur.com/9A0B1Aa.png",
-                    "https://i.imgur.com/2C3D4Bb.png",
-                    "https://i.imgur.com/5E6F7Cc.png"
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-1.avif?v=1778308974",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-2.avif?v=1778308974",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-4.avif?v=1778308974",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-5.avif?v=1778308974",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-3.avif?v=1778308974",
+                    "https://cdn.shopify.com/s/files/1/0601/4618/8474/files/HU92-6.avif?v=1778308974"
                 ]
             }
         };
@@ -560,6 +589,7 @@
                 compatibleVehicles.textContent = data.compatibleVehicles;
                 yearRange.textContent = data.yearRange;
                 mainProductImage.src = data.mainImage;
+                mainProductImage.alt = `${data.title} Decoder`;
                 
                 featuresGrid.innerHTML = '';
                 data.features.forEach(feature => {
