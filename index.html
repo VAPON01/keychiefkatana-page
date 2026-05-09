@@ -41,253 +41,13 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .header h1 {
-            font-size: 32px;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-        }
-
-        .header .subtitle {
-            color: var(--text-secondary);
-            font-size: 16px;
-            margin-bottom: 16px;
-        }
-
-        .header .description {
-            color: var(--text-secondary);
-            font-size: 14px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Model Selector */
-        .model-selector {
-            margin-bottom: 40px;
-        }
-
-        .model-selector h2 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-        }
-
-        .model-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 16px;
-        }
-
-        .model-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .model-card.active {
-            border-color: var(--accent-green);
-            background-color: rgba(76, 175, 80, 0.1);
-        }
-
-        .model-card:hover {
-            border-color: var(--accent-green);
-        }
-
-        .model-card h3 {
-            font-size: 16px;
-            margin-bottom: 4px;
-            color: var(--text-primary);
-        }
-
-        .model-card p {
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        .coming-soon {
-            font-size: 10px;
-            color: #ff9800;
-            margin-top: 8px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* Product Detail Section */
-        .product-detail {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin: 40px 0;
-        }
-
-        .product-info h2 {
-            font-size: 24px;
-            margin-bottom: 12px;
-        }
-
-        .product-info .description {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .specs {
-            margin-bottom: 20px;
-        }
-
-        .specs p {
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .view-details-btn {
-            background-color: var(--accent-green);
-            color: white;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-
-        .view-details-btn:hover {
-            background-color: #45a049;
-        }
-
-        .product-image {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .product-image img {
-            max-width: 100%;
-            max-height: 300px;
-            object-fit: contain;
-        }
-
-        /* Key Features Section */
-        .key-features {
-            margin: 40px 0;
-        }
-
-        .key-features h2 {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 12px;
-        }
-
-        .feature-item {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 12px;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .feature-item::before {
-            content: "";
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: var(--accent-green);
-        }
-
-        /* Product Gallery */
-        .product-gallery {
-            margin: 40px 0;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-        }
-
-        .gallery-item {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gallery-item img {
-            max-width: 100%;
-            max-height: 150px;
-            object-fit: contain;
-        }
-
-        /* 12 Video Grid Section */
-        .video-grid-section {
-            margin: 60px 0;
-        }
-        .video-grid-section h2 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .video-grid-section h2::before {
-            content: "●";
-            color: #ff4444;
-            font-size: 12px;
-        }
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-        .video-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            aspect-ratio: 16/9;
-        }
-        .video-item iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 992px) {
-            .video-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) {
-            .product-detail { grid-template-columns: 1fr; }
-            .video-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Header Section -->
-        <div class="header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
+        /* KEYCHIEF LOGO 绿色 */
+        .logo {
+            font-size: 42px;
+            font-weight: bold;
+            color: #2ecc71;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
         .header h1 {
@@ -522,17 +282,20 @@
         /* Responsive Adjustments */
         @media (max-width: 992px) {
             .video-grid { grid-template-columns: repeat(2, 1fr); }
+            .logo { font-size: 36px; }
         }
         @media (max-width: 768px) {
             .product-detail { grid-template-columns: 1fr; }
             .video-grid { grid-template-columns: 1fr; }
+            .logo { font-size: 32px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header Section -->
+        <!-- Header Section + KEYCHIEF Logo -->
         <div class="header">
+            <div class="logo">KEYCHIEF</div>
             <h1>KATANA Series</h1>
             <p class="subtitle">Professional key decoders for automotive specialists worldwide</p>
             <p class="description">The KATANA series represents precision engineering and reliability. Each decoder is designed for specific vehicle platforms, delivering professional-grade performance for locksmiths and automotive technicians.</p>
@@ -588,7 +351,7 @@
                 <button class="view-details-btn">View Full Details →</button>
             </div>
             <div class="product-image">
-                <img id="main-product-image" src="https://i.imgur.com/9Z7X7QH.png" alt="HU66 Decoder">
+                <img id="main-product-image" src="https://cdn.shopify.com/s/files/1/0601/4618/8474/products/hu66-1.jpg?v=1778308172" alt="HU66 Decoder">
             </div>
         </div>
 
@@ -611,22 +374,22 @@
             <h2>Product Gallery</h2>
             <div class="gallery-grid" id="gallery-grid">
                 <div class="gallery-item">
-                    <img src="https://i.imgur.com/8X7Y9Wb.png" alt="HU66 Decoder View 1">
+                    <img src="https://cdn.shopify.com/s/files/1/0601/4618/8474/products/hu66-1.jpg?v=1778308172" alt="HU66 Decoder View 1">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://i.imgur.com/5Z4A2Bd.png" alt="HU66 Decoder View 2">
+                    <img src="https://cdn.shopify.com/s/files/1/0601/4618/8474/products/1_31807d96-9b17-4934-a006-640d38631bc5.jpg?v=1632376178" alt="HU66 Decoder View 2">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://i.imgur.com/3C9E7Fg.png" alt="HU66 Decoder View 3">
+                    <img src="https://cdn.shopify.com/s/files/1/0601/4618/8474/files/2.jpg?v=1631633750" alt="HU66 Decoder View 3">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://i.imgur.com/1D2H5Jk.png" alt="HU66 Decoder View 4">
+                    <img src="https://cdn.shopify.com/s/files/1/0601/4618/8474/files/public.avif?v=1778308314" alt="HU66 Decoder View 4">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://i.imgur.com/7K8L3Mm.png" alt="HU66 Decoder Case">
+                    <img src="https://cdn.shopify.com/s/files/1/0601/4618/8474/files/3.avif?v=1778308314" alt="HU66 Decoder Case">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://i.imgur.com/9N0P6Qr.png" alt="HU66 Decoder Case Closeup">
+                    <img src="https://cdn.shopify.com/s/files/1/0601/4618/8474/files/3.avif?v=1778308314" alt="HU66 Decoder Case Closeup">
                 </div>
             </div>
         </div>
